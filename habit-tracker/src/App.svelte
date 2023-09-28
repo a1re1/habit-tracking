@@ -6,6 +6,7 @@
   const year = currentDate.getFullYear();
   const month = String(currentDate.getMonth() + 1).padStart(2, '0');
   const monthName = currentDate.toLocaleString('en-US', { month: 'long' });
+  const dayy = currentDate.getDate();
 
   let habits = ["glutes", "hips", "core", "calves"]
   let days = []
@@ -40,19 +41,19 @@
 </style>
 
 <main>
-  <button class="viewToggle" on:click={() => showDays = !showDays}>
-    {showDays ? "Totals" : "Days"}
-  </button>
-  <h1>{monthName}</h1>
+  <h1>{monthName} {dayy}</h1>
   {#if showDays}
     <Days habits={habits} days={days} progressMap={progressMap}/>
   {:else}
     <Totals habits={habits} days={days} progressMap={progressMap}/>
   {/if}
   <br>
-  <button class="viewToggle" on:click={() => clear()}>
-    Clear
+  <button class="viewToggle" on:click={() => showDays = !showDays}>
+    {showDays ? "Totals" : "Days"}
   </button>
+  <!--  <button class="viewToggle" on:click={() => clear()}>-->
+<!--    Clear-->
+<!--  </button>-->
 </main>
 
 

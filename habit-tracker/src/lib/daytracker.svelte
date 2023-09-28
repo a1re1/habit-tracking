@@ -7,27 +7,24 @@
     const currentDate = new Date();
     const year = currentDate.getFullYear();
     const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const day = currentDate.getDate();
 </script>
 
 <table>
     <thead>
     <td></td>
-    {#each habits as habit}
-        <td class="header">{habit}</td>
-    {/each}
+
     </thead>
-    {#each days as day}
+    {#each habits as habit}
         <tr>
-            <td>{day}</td>
-            {#each habits as habit}
-                <td>
-                    <Checkbox checked={progressMap[habit][day]} toggle={() => {
+            <td>{habit}</td>
+        <td>
+            <Checkbox checked={progressMap[habit][day]} toggle={() => {
                         const value = progressMap[habit][day];
                         localStorage.setItem(habit + "-" + day + "-" + month + "-" + year, JSON.stringify(!value))
                         progressMap[habit][day] = !value
                     }}/>
-                </td>
-            {/each}
+        </td>
         </tr>
     {/each}
 </table>
